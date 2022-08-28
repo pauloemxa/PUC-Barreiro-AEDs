@@ -1,9 +1,9 @@
 using System;
 using System.IO;
 
-namespace Trabalho01
+namespace TP01
 {
-    class Ex02ContarMaiusculas {        
+    class Q01 {        
 
         public static String isPalindromo(String word){
             Boolean resp = false;
