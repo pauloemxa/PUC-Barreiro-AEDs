@@ -11,9 +11,6 @@ namespace TP01
 
         public static String ciframentoAleatorio(String word)
         {
-
-
-
             String resp = "";
 
             for (int i = 0; i < word.Length; i++)

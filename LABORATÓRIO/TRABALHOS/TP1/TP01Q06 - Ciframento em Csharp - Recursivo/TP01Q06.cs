@@ -5,42 +5,11 @@ namespace TP01
 {
     class Q06
     {
-        public static String ciframento(String word)
+        public static String ciframentoRecursivo(String resp, String word, int i)
         {
-            String resp = "";
-            for (int i = 0; i < word.Length; i++)
+            if (i < word.Length)
             {
-                resp += "" + ((char)((int)word[i] + 3));
-            }
-            return resp;
-        }
-        public static String isPalindromoRecursivo(String word, int i, int j)
-        {
-            Boolean resp = false;
-            while (i < j)
-            {
-                if (word[i] == word[j])
-                {
-                    isPalindromoRecursivo(word, ++i, --j);
-                    resp = true;
-                }
-                else
-                {
-                    resp = false;
-                    i = j;
-                }
-
-            }
-            return resp ? "SIM" : "NAO";
-        }
-        public static String ciframentoRecursivo(String word, int i)
-        {
-            String resp = "";
-
-            while (i < word.Length)
-            {
-                resp += "" + ((char)((int)word[i] + 3));
-                ciframentoRecursivo(""+word[i], ++i);
+                resp += ((char)((int)word[i] + 3)) + ciframentoRecursivo(resp, word, ++i);
             }
 
             return resp;
@@ -49,12 +18,13 @@ namespace TP01
         static void Main(string[] args)
         {
             String linha = "";
+            String resp = "";
             
             while (linha != "FIM")
             {
                 linha = Console.ReadLine();
                 if (linha != "FIM")
-                    System.Console.WriteLine(ciframentoRecursivo(linha, 0));
+                    System.Console.WriteLine(ciframentoRecursivo(resp, linha, 0));
             }
         }
     }
