@@ -9,7 +9,7 @@ namespace TP01
             String resp = "";
             for (int i = 0; i < word.Length; i++)
             {
-                resp += ""+((char)((int)word[i]+3));
+                resp += "" + ((char)((int)word[i] + 3));
             }
             return resp;
         }
