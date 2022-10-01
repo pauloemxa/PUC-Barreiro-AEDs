@@ -5,15 +5,14 @@ namespace TP01
 {
     class Q01
     {
-        public static String isPalindromoRecursivo(String word, int i, int j)
+        public static Boolean isPalindromoRecursivo(String word, int i, int j)
         {
-            Boolean resp = false;
-            while (i < j)
+            Boolean resp = true;
+            if (i < j)
             {
                 if (word[i] == word[j])
                 {
-                    isPalindromoRecursivo(word, ++i, --j);
-                    resp = true;
+                    resp = isPalindromoRecursivo(word, ++i, --j);
                 }
                 else
                 {
@@ -22,7 +21,7 @@ namespace TP01
                 }
 
             }
-            return resp ? "SIM" : "NAO";
+            return resp;
         }
 
         static void Main(string[] args)
@@ -33,7 +32,7 @@ namespace TP01
             {
                 linha = Console.ReadLine();
                 if (linha != "FIM")
-                    System.Console.WriteLine(isPalindromoRecursivo(linha, 0, linha.Length - 1));
+                    System.Console.WriteLine(isPalindromoRecursivo(linha, 0, linha.Length - 1)? "SIM" : "NAO");
             }
         }
     }
