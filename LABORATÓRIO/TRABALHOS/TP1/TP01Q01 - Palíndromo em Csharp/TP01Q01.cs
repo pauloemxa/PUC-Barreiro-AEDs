@@ -1,5 +1,4 @@
 using System;
-using System.IO;
 
 namespace TP01
 {
@@ -17,18 +16,25 @@ namespace TP01
                     i=j;
                 }
             }
+             
+               i    j
+     linha = asdfggfksa
+
+
+
             return resp?"SIM":"NAO";
         }
 
         static void Main(string[] args)
         {
-            String linha = "";
+            String linha = Console.ReadLine();
         
-            while (linha != "FIM"){
+            while(linha != "FIM")
+            {
+                Console.WriteLine(linha);
                 linha = Console.ReadLine();
-                if (linha != "FIM")
-                    System.Console.WriteLine(isPalindromo(linha));
             }
         }
     }
 }
+

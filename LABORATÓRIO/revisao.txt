@@ -1,0 +1,40 @@
+1. 
+
+3(n-4) + 
+5-(n-2) +
+(log (n-1)) + 1 +
+
+3 +
+
+2(n(n-1))
+
+3n-12+(n-7)+(logn-1)+1+3+2n^2-2n
+(n-7)+(logn-1)+1+1+2n^2-2n
+
+teta(n^2)
+
+
+2.
+pilha   - frist in last out
+fila    - frist in frist out
+
+void remover pilha(){
+    resp = array.Lenth - n;
+    n--;
+    return resp;
+}
+[][][][][4][3][2]
+
+void remover fila(){
+    resp = array.Lenth;
+    for(){
+        //mexer todo mundo uma casa pra direita
+    }
+    n--;
+    return resp;
+}
+[][][][][4][3][2]
+
+
+
+
