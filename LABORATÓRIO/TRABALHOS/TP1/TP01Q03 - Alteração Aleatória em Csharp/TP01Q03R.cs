@@ -3,21 +3,19 @@ using System.IO;
 
 namespace TP01
 {
-    class Q03
+    class Q03R
     {
-        public static String ciframentoAleatorio(String word, char aleatorio1, char aleatorio2)
+        public static String ciframentoAleatorio(String word, char aleatorio1, char aleatorio2, int i, String resp)
         {
-            String resp = "";
-
-            for (int i = 0; i < word.Length; i++)
+            if (i < word.Length)
             {
                 if (word[i] == aleatorio1)
                 {
-                    resp += aleatorio2;
+                    resp += aleatorio2 + ciframentoAleatorio(word, aleatorio1, aleatorio2, ++i, resp);
                 }
                 else
                 {
-                    resp += word[i];
+                    resp += word[i] + ciframentoAleatorio(word, aleatorio1, aleatorio2, ++i, resp);
                 }
             }
             return resp;
@@ -30,13 +28,14 @@ namespace TP01
             char aleatorio2 = (char)('a' + (Math.Abs(gerador.Next()) % 26));
 
             System.Console.WriteLine("valores: " + aleatorio1 + " e " + aleatorio2);
-            String linha = "";
+            String linha = "", resp = "";
+            int i = 0;
 
             while (linha != "FIM")
             {
                 linha = Console.ReadLine();
                 if (linha != "FIM")
-                    System.Console.WriteLine(ciframentoAleatorio(linha, aleatorio1, aleatorio2));
+                    System.Console.WriteLine(ciframentoAleatorio(linha, aleatorio1, aleatorio2, i, resp));
             }
         }
     }

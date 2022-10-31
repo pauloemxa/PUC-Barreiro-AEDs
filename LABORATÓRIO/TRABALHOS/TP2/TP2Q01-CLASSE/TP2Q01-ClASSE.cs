@@ -38,6 +38,7 @@ namespace TP02Q01
         void ler(String linha){
             String[] linhaSub = linha.Split(',');
             String[] data = linhaSub[3].Split('/');
+
             this.nome = linhaSub[1];
             this.foto = linhaSub[2];
             this.nascimento = new DateTime(int.Parse(data[2]), int.Parse(data[1]), int.Parse(data[0]));
@@ -49,6 +50,7 @@ namespace TP02Q01
                 this.times[j] = int.Parse(linhaSub[i].Replace("[","").Replace("]","").Replace("\"",""));
             }
         }
+
         static void Main(string[] args)
         {
             Jogadores jogador = new Jogadores();

@@ -1,8 +1,8 @@
 using System;
 
-namespace TP02Q03
+namespace TP02Q05
 {
-    class ListaJogadores
+    class PilhaJogadores
     {
         private Jogadores[] array;
         private int n;
@@ -14,34 +14,10 @@ namespace TP02Q03
          * Construtor da classe.
          * @param tamanho Tamanho da lista.
          */
-        public ListaJogadores(int tamanho)
+        public PilhaJogadores(int tamanho)
         {
             array = new Jogadores[tamanho];
             n = 0;
-        }
-
-        /**
-         * Insere um elemento na primeira posicao da lista e move os demais
-         * elementos para o fim da lista.
-         * @param x int elemento a ser inserido.
-         * @throws Exception Se a lista estiver cheia.
-         */
-        public void inserirInicio(Jogadores x)
-        {
-            //validar insercao
-            if (n >= array.Length)
-            {
-                throw new Exception("Erro ao inserir!");
-            }
-
-            //levar elementos para o fim do array
-            for (int i = n; i > 0; i--)
-            {
-                array[i] = array[i - 1];
-            }
-
-            array[0] = x;
-            n++;
         }
 
 
@@ -65,59 +41,6 @@ namespace TP02Q03
 
 
         /**
-         * Insere um elemento em uma posicao especifica e move os demais
-         * elementos para o fim da lista.
-         * @param x int elemento a ser inserido.
-         * @param pos Posicao de insercao.
-         * @throws Exception Se a lista estiver cheia ou a posicao invalida.
-         */
-        public void inserir(Jogadores x, int pos)
-        {
-            //validar insercao
-            if (n >= array.Length || pos < 0 || pos > n)
-            {
-                throw new Exception("Erro ao inserir!");
-            }
-
-            //levar elementos para o fim do array
-            for (int i = n; i > pos; i--)
-            {
-                array[i] = array[i - 1];
-            }
-
-            array[pos] = x;
-            n++;
-        }
-
-
-        /**
-         * Remove um elemento da primeira posicao da lista e movimenta 
-         * os demais elementos para o inicio da mesma.
-         * @return resp int elemento a ser removido.
-         * @throws Exception Se a lista estiver vazia.
-         */
-        public Jogadores removerInicio()
-        {
-
-            //validar remocao
-            if (n == 0)
-            {
-                throw new Exception("Erro ao remover!");
-            }
-
-            Jogadores resp = array[0];
-            n--;
-
-            for (int i = 0; i < n; i++)
-            {
-                array[i] = array[i + 1];
-            }
-
-            return resp;
-        }
-
-
-        /**
          * Remove um elemento da ultima posicao da lista.
          * @return resp int elemento a ser removido.
          * @throws Exception Se a lista estiver vazia.
@@ -136,34 +59,6 @@ namespace TP02Q03
 
 
         /**
-         * Remove um elemento de uma posicao especifica da lista e 
-         * movimenta os demais elementos para o inicio da mesma.
-         * @param pos Posicao de remocao.
-         * @return resp int elemento a ser removido.
-         * @throws Exception Se a lista estiver vazia ou a posicao for invalida.
-         */
-        public Jogadores remover(int pos)
-        {
-
-            //validar remocao
-            if (n == 0 || pos < 0 || pos >= n)
-            {
-                throw new Exception("Erro ao remover!");
-            }
-
-            Jogadores resp = array[pos];
-            n--;
-
-            for (int i = pos; i < n; i++)
-            {
-                array[i] = array[i + 1];
-            }
-
-            return resp;
-        }
-
-
-        /**
          * Mostra os elementos da lista separados por espacos.
          */
         public void mostrar()
@@ -173,7 +68,6 @@ namespace TP02Q03
                 array[i].imprimir();
             }
         }
-
 
         /**
          * Procura um elemento e retorna se ele existe.
@@ -247,7 +141,7 @@ namespace TP02Q03
         {
             String linha = Console.ReadLine();
 
-            ListaJogadores time = new ListaJogadores(30);
+            PilhaJogadores time = new PilhaJogadores(20);
             Jogadores jogador = new Jogadores();
 
             int i = 0, tamComandos = 0;
@@ -273,30 +167,11 @@ namespace TP02Q03
                 jogador = new Jogadores();
                 switch (comando[0])
                 {
-                    case "II":
-                        jogador.ler(linha.Substring(2));
-                        time.inserirInicio(jogador);
-                        break;
-                    case "I*": 
-                        if (linha[4] != ' ')
-                        {
-                            jogador.ler(linha.Substring(6));
-                        }else{
-                            jogador.ler(linha.Substring(5));
-                        }
-                        time.inserir(jogador, int.Parse(comando[1]));
-                        break;
-                    case "IF":
+                    case "I":
                         jogador.ler(linha.Substring(2));
                         time.inserirFim(jogador);
                         break;
-                    case "RI":
-                        time.removerInicio();
-                        break;
-                    case "R*":
-                        time.remover(int.Parse(comando[1]));
-                        break;
-                    case "RF":
+                    case "R":
                         time.removerFim();
                         break;
                     default:
