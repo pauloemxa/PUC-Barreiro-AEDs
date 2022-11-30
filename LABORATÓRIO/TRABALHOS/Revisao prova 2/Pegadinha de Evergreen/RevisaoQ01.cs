@@ -26,9 +26,6 @@ namespace TP01
                     
                     }
             }
-            if (linha2.Length%2==1){
-                // resp += linha2[]
-            }
             return resp;
         }  
 
