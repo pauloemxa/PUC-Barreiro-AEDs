@@ -66,7 +66,6 @@ namespace TP2Q01_CLASSE
 
             while (linha != "FIM")
             {
-
                 jogador.ler(linha);
                 jogador.imprimir();
                 linha = Console.ReadLine();

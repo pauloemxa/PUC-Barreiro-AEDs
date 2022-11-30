@@ -67,7 +67,6 @@ namespace TP02Q02
         static void Main(string[] args)
         {
             int i = 0;
-            
             String linha = Console.ReadLine();
             Jogadores[] jogador = new Jogadores[30];
             while (linha != "FIM")

@@ -1,6 +1,6 @@
 using System;
 
-namespace TP02Q03
+namespace TP03Q01
 {
     class Jogadores
     {
@@ -55,49 +55,18 @@ namespace TP02Q03
             }
         }
 
-        static String pesquisaSequencial(Jogadores[] jogadores, String nome, int j)
-        {
-            Boolean resp = false;
-            int n = jogadores.Length - j;
-
-            for (int i = 0; i < n; i++)
-            {
-                if (jogadores[i].nome.Equals(nome))
-                {
-                    resp = true;
-                    i = n;
+        public static void Sort(Jogadores[] jogadores, int tamArray) {
+            for (int i = 0; i < tamArray-1; i++) {
+                int menor = i;
+                for (int j = (i + 1); j < tamArray; j++){
+                    if (jogadores[menor].id > jogadores[j].id){
+                        menor = j;
+                    }
                 }
+                Jogadores tempJogador = jogadores[menor];
+                jogadores[menor] = jogadores[i];
+                jogadores[i] = tempJogador;
             }
-            return resp ? "SIM" : "NAO";
-        }
-
-        public static Boolean pesqBinRec(Jogadores[] vet, String x, int count)
-        {
-            return pesqBinRec(vet, x, 0, (vet.Length - 1) - count);
-        }
-
-        public static Boolean pesqBinRec(Jogadores[] vet, String x, int esq, int dir)
-        {
-            Boolean resp;
-            int meio = (esq + dir) / 2;
-
-            if (esq > dir)
-            {
-                resp = false;
-            }
-            else if (x.Equals(vet[meio].nome))
-            {
-                resp = true;
-            }
-            else if (string.Compare(x, vet[meio].nome) == 1)
-            {
-                resp = pesqBinRec(vet, x, meio + 1, dir);
-            }
-            else
-            {
-                resp = pesqBinRec(vet, x, esq, meio - 1);
-            }
-            return resp;
         }
 
         static void Main(string[] args)
@@ -112,12 +81,10 @@ namespace TP02Q03
                 linha = Console.ReadLine();
                 i++;
             }
-
-            linha = Console.ReadLine();
-            while (linha != "FIM")
+            Sort(jogador, i);
+            for (int j = 0; j < i; j++)
             {
-                Console.WriteLine(pesqBinRec(jogador, linha, i)?"SIM":"NAO");
-                linha = Console.ReadLine();
+                jogador[j].imprimir();
             }
         }
     }

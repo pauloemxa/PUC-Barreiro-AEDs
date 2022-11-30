@@ -260,6 +260,7 @@ namespace TP02Q03
                 linha = Console.ReadLine();
                 i++;
             }
+            
             tamComandos = int.Parse(Console.ReadLine());
 
             linha = Console.ReadLine();

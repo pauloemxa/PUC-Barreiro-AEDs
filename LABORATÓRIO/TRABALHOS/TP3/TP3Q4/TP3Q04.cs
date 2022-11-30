@@ -1,6 +1,6 @@
 using System;
 
-namespace TP02Q03
+namespace TP03Q04
 {
     class Jogadores
     {
@@ -18,6 +18,7 @@ namespace TP02Q03
             this.id = 0;
             this.times = new int[] { 123, 123, 456, 789 };
         }
+
         void imprimir()
         {
             Console.Write(this.id + " ");
@@ -37,7 +38,6 @@ namespace TP02Q03
             Console.Write(")");
             Console.WriteLine();
         }
-
         void ler(String linha)
         {
             String[] linhaSub = linha.Split(',');
@@ -54,50 +54,36 @@ namespace TP02Q03
                 this.times[j] = int.Parse(linhaSub[i].Replace("[", "").Replace("]", "").Replace("\"", ""));
             }
         }
-
-        static String pesquisaSequencial(Jogadores[] jogadores, String nome, int j)
+        static void Swap(Jogadores[] array, int i, int j)
         {
-            Boolean resp = false;
-            int n = jogadores.Length - j;
+            Jogadores tmp = array[i];
+            array[i] = array[j];
+            array[j] = tmp;
+        }
 
-            for (int i = 0; i < n; i++)
+        public static void Sort(Jogadores[] array, int i)
+        {
+            SortQuicksort(array, 0, i - 1);
+        }
+
+        private static void SortQuicksort(Jogadores[] array, int esq, int dir)
+        {
+            int i = esq, j = dir;
+            String pivo = array[(dir + esq) / 2].nome;
+            while (i <= j)
             {
-                if (jogadores[i].nome.Equals(nome))
+                while (string.Compare(array[i].nome, pivo) == -1) i++;
+                while (string.Compare(array[j].nome, pivo) == 1) j--;
+                if (i <= j)
                 {
-                    resp = true;
-                    i = n;
+                    Swap(array, i, j);
+                    i++;
+                    j--;
                 }
             }
-            return resp ? "SIM" : "NAO";
-        }
 
-        public static Boolean pesqBinRec(Jogadores[] vet, String x, int count)
-        {
-            return pesqBinRec(vet, x, 0, (vet.Length - 1) - count);
-        }
-
-        public static Boolean pesqBinRec(Jogadores[] vet, String x, int esq, int dir)
-        {
-            Boolean resp;
-            int meio = (esq + dir) / 2;
-
-            if (esq > dir)
-            {
-                resp = false;
-            }
-            else if (x.Equals(vet[meio].nome))
-            {
-                resp = true;
-            }
-            else if (string.Compare(x, vet[meio].nome) == 1)
-            {
-                resp = pesqBinRec(vet, x, meio + 1, dir);
-            }
-            else
-            {
-                resp = pesqBinRec(vet, x, esq, meio - 1);
-            }
-            return resp;
+            if (esq < j) SortQuicksort(array ,esq, j);
+            if (i < dir) SortQuicksort(array ,i, dir);
         }
 
         static void Main(string[] args)
@@ -112,12 +98,10 @@ namespace TP02Q03
                 linha = Console.ReadLine();
                 i++;
             }
-
-            linha = Console.ReadLine();
-            while (linha != "FIM")
+            Sort(jogador, i);
+            for (int j = 0; j < i; j++)
             {
-                Console.WriteLine(pesqBinRec(jogador, linha, i)?"SIM":"NAO");
-                linha = Console.ReadLine();
+                jogador[j].imprimir();
             }
         }
     }
