@@ -2,14 +2,48 @@ using System;
 
 namespace TP01
 {
-    class RevisaoQ02
+    class RevisaoQ01
     {
+
+        public static String imprimeNomeCorreto(String linha1, String linha2)
+        {
+            String resp = "";
+            for (int i = 0; i < linha1.Length; i += 2)
+            {
+                if (i < linha1.Length - 1)
+                {
+                    resp += linha1[i];
+                    resp += linha1[i + 1];
+                    if (linha2.Length % 2 == 0)
+                    {
+                        resp += linha2[i];
+                        resp += linha2[i + 1];
+                    }
+                    else
+                    {
+                        resp += linha2[i];
+                        if (i < linha2.Length - 2)
+                        {
+                            resp += linha2[i + 1];
+                        }
+                    }
+
+                }
+            }
+            if (linha2.Length % 2 == 1)
+            {
+                // resp += linha2[]
+            }
+            return resp;
+        }
+
         static void Swap(int[] array, int i, int j)
         {
             int tmp = array[i];
             array[i] = array[j];
             array[j] = tmp;
         }
+
         public static void Sort(int[] array)
         {
             SortQuicksort(0, array.Length - 1, array);
@@ -55,6 +89,7 @@ namespace TP01
                     }
                 }
             }
+
             return resp;
         }
 

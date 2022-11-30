@@ -226,8 +226,6 @@ namespace TP02Q03
             Console.Write(")");
             Console.WriteLine();
         }
-
-
         void ler(String linha)
         {
             String[] linhaSub = linha.Split(',');
